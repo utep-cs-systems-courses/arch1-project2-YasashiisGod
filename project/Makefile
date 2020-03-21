@@ -11,7 +11,7 @@ AS		= msp430-elf-as
 all: blinky_buzzy_toy.elf
 
 #
-blinky_buzzy_toy.elf: ${COMMON_OBJECTS} blinky_buzzy_toy.o buzzer.o 
+blinky_buzzy_toy.elf: ${COMMON_OBJECTS} blinky_buzzy_toy.o buzzer.o ../demos/lib/libTimer.a 
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
 
 load: blinky_buzzy_toy.elf
@@ -20,8 +20,8 @@ load: blinky_buzzy_toy.elf
 clean:
 	rm -f *.o *.elf *~
 
-blinky_buzzy_toy.o: ../demos/h/libTimer.h game_helpers/led.h game_helpers/buzzer.h
-	${CC} ${CFLAGS} -c -I../demos/h -Igame_helpers blinky_buzzy_toy.c
+blinky_buzzy_toy.o: ../demos/timerLib/libTimer.h game_helpers/led.h game_helpers/buzzer.h
+	${CC} ${CFLAGS} -c -I../demos/timerLib -Igame_helpers blinky_buzzy_toy.c
 
-buzzer.o: game_helpers/buzzer.c game_helpers/buzzer.h ../demos/h/libTimer.h
-	${CC} ${CFLAGS} -c -I../demos/h game_helpers/buzzer.c
+buzzer.o: game_helpers/buzzer.c game_helpers/buzzer.h ../demos/timerLib/libTimer.h
+	${CC} ${CFLAGS} -c -I../demos/timerLib game_helpers/buzzer.c
