@@ -29,10 +29,10 @@ stateMachines.o: helpers/led.h helpers/stateMachines.h helpers/stateMachines.c
 wdInterruptHandler.o: helpers/wdInterruptHandler.c function/concert.h
 	${CC} ${CFLAGS} -c -Ifunction helpers/wdInterruptHandler.c
 
-concert.o: function/concert.h function/concert.c helpers/buzzer.h
+concert.o: function/concert.h function/concert.c helpers/buzzer.h helpers/led.h 
 	${CC} ${CFLAGS} -c -I./ -Ihelpers function/concert.c
 
-led.o: helpers/led.c helpers/led.h
+led.o: helpers/led.c helpers/led.h 
 	${CC} ${CFLAGS} -c -Ihelpers helpers/led.c
 
 buzzer.o: helpers/buzzer.c helpers/buzzer.h ../demos/timerLib/libTimer.h

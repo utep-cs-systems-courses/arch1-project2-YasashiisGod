@@ -19,33 +19,33 @@ void led_change()
   P1OUT |= ledFlags;
 }
 
-void turn_on_green()
+void green_toggle_on()
 {
   green_on = 1;
   red_on = 0;
   led_change();
 }
 
-void turn_on_red()
+void red_toggle_on()
 {
   red_on = 1;
   green_on = 0;
   led_change();
 }
 
-void turn_off_green()
+void green_toggle_off()
 {
   green_on = 0;
   led_change();
 }
 
-void turn_off_red()
+void red_toggle_off()
 {
   red_on = 0;
   led_change();
 }
 
-void turn_off_red_green()
+void both_off()
 {
   red_on = 0;
   green_on = 0;

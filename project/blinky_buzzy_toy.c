@@ -8,6 +8,8 @@ int main(void)
 {
   configureClocks();
 
+  led_init();
+  
   buzzer_init();
 
   enableWDTInterrupts();
