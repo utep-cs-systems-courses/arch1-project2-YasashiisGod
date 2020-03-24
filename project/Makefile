@@ -1,7 +1,7 @@
 #
 COMMON_OBJECTS	=
 CPU 		= msp430g2553
-CFLAGS		= -mmcu=${CPU} -I ../demos/h -I game 
+CFLAGS		= -mmcu=${CPU} -I ../demos/h -I function 
 LDFLAGS		= -L/opt/ti/msp430_gcc/include
 
 #
@@ -11,7 +11,7 @@ AS		= msp430-elf-as
 all: blinky_buzzy_toy.elf
 
 #
-blinky_buzzy_toy.elf: ${COMMON_OBJECTS} blinky_buzzy_toy.o buzzer.o The_Game.o wdInterruptHandler.o ../demos/lib/libTimer.a stateMachines.o led.o 
+blinky_buzzy_toy.elf: ${COMMON_OBJECTS} blinky_buzzy_toy.o buzzer.o concert.o wdInterruptHandler.o ../demos/lib/libTimer.a stateMachines.o led.o 
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
 
 load: blinky_buzzy_toy.elf
@@ -20,20 +20,20 @@ load: blinky_buzzy_toy.elf
 clean:
 	rm -f *.o *.elf *~
 
-blinky_buzzy_toy.o: ../demos/timerLib/libTimer.h game_helpers/led.h game_helpers/buzzer.h
-	${CC} ${CFLAGS} -c -I../demos/timerLib -Igame_helpers blinky_buzzy_toy.c
+blinky_buzzy_toy.o: ../demos/timerLib/libTimer.h helpers/led.h helpers/buzzer.h
+	${CC} ${CFLAGS} -c -I../demos/timerLib -Ihelpers blinky_buzzy_toy.c
 
-stateMachines.o: game_helpers/led.h game_helpers/stateMachines.h game_helpers/stateMachines.c 
-	${CC} ${CFLAGS} -c -Igame -Igame_helpers game_helpers/stateMachines.c
+stateMachines.o: helpers/led.h helpers/stateMachines.h helpers/stateMachines.c 
+	${CC} ${CFLAGS} -c -Ifunction -Ihelpers helpers/stateMachines.c
 
-wdInterruptHandler.o: game_helpers/wdInterruptHandler.c game/The_Game.h
-	${CC} ${CFLAGS} -c -Igame game_helpers/wdInterruptHandler.c
+wdInterruptHandler.o: helpers/wdInterruptHandler.c function/concert.h
+	${CC} ${CFLAGS} -c -Ifunction helpers/wdInterruptHandler.c
 
-The_Game.o: game/The_Game.h game/The_Game.c game_helpers/buzzer.h
-	${CC} ${CFLAGS} -c -I./ -Igame_helpers game/The_Game.c
+concert.o: function/concert.h function/concert.c helpers/buzzer.h
+	${CC} ${CFLAGS} -c -I./ -Ihelpers function/concert.c
 
-led.o: game_helpers/led.c game_helpers/led.h
-	${CC} ${CFLAGS} -c -Igame_helpers game_helpers/led.c
+led.o: helpers/led.c helpers/led.h
+	${CC} ${CFLAGS} -c -Ihelpers helpers/led.c
 
-buzzer.o: game_helpers/buzzer.c game_helpers/buzzer.h ../demos/timerLib/libTimer.h
-	${CC} ${CFLAGS} -c -I../demos/timerLib game_helpers/buzzer.c
+buzzer.o: helpers/buzzer.c helpers/buzzer.h ../demos/timerLib/libTimer.h
+	${CC} ${CFLAGS} -c -I../demos/timerLib helpers/buzzer.c
