@@ -25,18 +25,24 @@ static void set_light(char conductor_position, char change_dimness)
 
 void found_sound()
 {
-  short sound_notes[] = {1,2,1,0,1,3,1,4,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  short sound_notes[] = {1,2,3,4,5,6,7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
   static char conductor = 0;
   static int n = 0;
-
-  if (++n < 100){
-    set_light(conductor, ((n == 1)? 1:0));
+  static int nothing = 0;
+ 
+  if (++n < 200){
+    // set_light(conductor, ((n == 1)? 1:0));
+    nothing++;
+    red_toggle_on();
   }
   else {
+    if (sound_notes[conductor] != 0){
+      green_toggle_on();
+    }
     tone_player(sound_notes[conductor]);
   }
-
-  if (++n > 127){
+ 
+  if (++n > 255){
     if (++conductor> 20){
       conductor = 0;
     }

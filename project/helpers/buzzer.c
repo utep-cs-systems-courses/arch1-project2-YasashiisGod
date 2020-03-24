@@ -22,25 +22,25 @@ void buzzer_set_period(short cycles)
 
 static short tone (unsigned char note_num)
 {
-  //Note F
+  //Note 4G
   if (note_num == 1)
     {
-      return 1397;
+      return 392;
     }
-  //Note Ab
+  //Note 4Gb
   if (note_num == 2)
     {
-      return 1661;
+      return 370;
     }
-  //Note Bb
+  //Note 4D#
   if (note_num == 3)
     {
-      return 1864;
+      return 311;
     }
-  //Note Eb
+  //Note 3A
   if (note_num == 4)
     {
-      return 1244;
+      return 220;
     }
   //Note 3Ab
   if (note_num == 5)
