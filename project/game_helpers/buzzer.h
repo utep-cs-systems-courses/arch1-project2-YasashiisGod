@@ -7,6 +7,8 @@ void buzzer_set_period(short cycles);
 
 //void sound_key(unsigned char note_num); // for playing certain notes
 
+void tone_player(unsigned char note_num);
+
 #endif
 
 
