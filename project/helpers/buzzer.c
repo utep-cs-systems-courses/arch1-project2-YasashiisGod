@@ -25,7 +25,7 @@ static short tone (unsigned char note_num)
   //Note 4G
   if (note_num == 1)
     {
-      return 392;
+      return 329;
     }
   //Note 4Gb
   if (note_num == 2)

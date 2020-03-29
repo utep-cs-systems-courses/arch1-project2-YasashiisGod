@@ -28,11 +28,8 @@ void found_sound()
   short sound_notes[] = {1,2,3,4,5,6,7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
   static char conductor = 0;
   static int n = 0;
-  static int nothing = 0;
  
-  if (++n < 200){
-    // set_light(conductor, ((n == 1)? 1:0));
-    nothing++;
+  if (++n < 66){
     red_toggle_on();
   }
   else {
@@ -42,7 +39,7 @@ void found_sound()
     tone_player(sound_notes[conductor]);
   }
  
-  if (++n > 255){
+  if (++n > 85){
     if (++conductor> 20){
       conductor = 0;
     }
