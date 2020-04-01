@@ -4,15 +4,15 @@
 
 void __interrupt_vec(WDT_VECTOR) WDT()
 {
-  if (game_num == 1)
-    {
-      found_sound();
-    }
-  
-  else
-    {
-      
-    }
+  switch (game_num){
+  case 1:
+    found_sound();
+    break;
+  case 2:
+    everything_off();
+    break;
+  }
 }
+      
 
 
