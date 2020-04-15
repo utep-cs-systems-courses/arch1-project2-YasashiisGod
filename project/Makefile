@@ -10,7 +10,7 @@ CC		= msp430-elf-gcc
 AS 		= msp430-elf-as 
 
 all:
-	(cd ../demos/timerLib; make install)
+	cd ../demos/timerLib; make install
 #(cd helpers; make blinky_buzzy_toy.elf)
 #(cd function; make blinky_buzzy_toy.elf)
 	make blinky_buzzy_toy.elf
