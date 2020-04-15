@@ -1,5 +1,5 @@
-#ifndef buttons_included
-#define buttons_included
+#ifndef button_included
+#define button_included
 
 #define BTN1 BIT0
 #define BTN2 BIT1

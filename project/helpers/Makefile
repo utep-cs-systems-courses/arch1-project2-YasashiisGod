@@ -1,25 +1,39 @@
+COMMON_OBJECTS 	=
+
 CPU             = msp430g2553
+
 CFLAGS          = -mmcu=${CPU} -I ../../demos/h -I games
+
+LDFLAGS 	= -L/opt/ti/msp430_gcc/include
+
 
 #switch the compiler (for the internal make rules)
 CC              = msp430-elf-gcc
 
-all: led.o buzzer.o wdInterruptHandler.o stateMachines.o button.o
+AS 		= msp430-elf-as
+
+#all: led.o buzzer.o wdInterruptHandler.o stateMachines.o button.o toggle.o 
+
+blinky_buzzy_toy.elf:${COMMON_OBJECTS} led.o buzzer.o wdInterruptHandler.o stateMachines.o button.o toggle.o
+	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
 
 clean:
 	rm -f *.o
 
-led.o: led.c led.h
+#led.o: led.c led.h button.h stateMachines.h
 	${CC} ${CFLAGS} -c led.c
 
-buzzer.o: buzzer.c buzzer.h ../../demos/timerLib/libTimer.h
+#buzzer.o: buzzer.c buzzer.h  ../../demos/timerLib/libTimer.h
 	${CC} ${CFLAGS} -c -I../../demos/timerLib buzzer.c
 
-wdInterruptHandler.o: wdInterruptHandler.c stateMachines.h led.h ../function/concert.h 
+#wdInterruptHandler.o: wdInterruptHandler.c stateMachines.h button.h ../function/concert.h 
 	${CC} ${CFLAGS} -c -I../function wdInterruptHandler.c
 
-stateMachines.o: led.h stateMachines.h stateMachines.c button.h ../function/concert.h
-	${CC} ${CFLAGS} -c -I../function stateMachines.c
+#stateMachines.o: led.h stateMachines.h stateMachines.c buzzer.h button.h  ../function/concert.h ../../demos/timerLib/libTimer.h
+	${CC} ${CFLAGS} -c -I../function -I../../demos/timerLib stateMachines.c
 
-button.o: button.c button.h
+#button.o: button.c button.h
 	${CC} ${CFLAGS} -c button.c
+
+#toggle.o: toggle.o toggle.s
+	${CC} ${CFLAGS} -c toggle.s

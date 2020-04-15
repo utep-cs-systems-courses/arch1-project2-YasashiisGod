@@ -5,6 +5,7 @@ extern char button_state, button_state_altered;
 
 // states for msp430
 void next_state();
+void reset_state();
 void dim_led();
 void delay();
 

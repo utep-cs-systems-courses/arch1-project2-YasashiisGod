@@ -9,6 +9,8 @@ void buzzer_set_period(short cycles);
 
 void tone_player(unsigned char note_num);
 
+//static short tone (unsigned char note_num);
+
 #endif
 
 
