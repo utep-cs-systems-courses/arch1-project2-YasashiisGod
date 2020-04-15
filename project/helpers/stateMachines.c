@@ -27,6 +27,7 @@ static char button_update_interrupt_sense()
   return p2val;
 }
 
+
 static char button_choice()
 {
   char p2val = button_update_interrupt_sense();

@@ -9,6 +9,7 @@
 #define BUTTONS (BTN1 | BTN2 | BTN3 | BTN4)
 
 void button_init();
+//void button_update();
 
 #endif
 
