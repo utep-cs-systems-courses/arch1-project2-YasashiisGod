@@ -10,7 +10,5 @@
 
 void button_init();
 
-void button_update_interrupt_sense();
-
 #endif
 

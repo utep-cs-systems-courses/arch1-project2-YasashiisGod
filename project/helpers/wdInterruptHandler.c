@@ -1,18 +1,11 @@
 #include <msp430.h>
 #include "concert.h"
 #include "stateMachines.h"
+#include "button.h"
 
-void __interrupt_vec(WDT_VECTOR) WDT()
-{
-  switch (game_num){
-  case 1:
-    found_sound();
-    break;
-  case 2:
-    everything_off();
-    break;
+void __interrupt_vec(PORT2_VECTOR)Port_2(){
+  if (P2IFG & BUTTONS) {
+    P2IFG &= ~BUTTONS;
+    next_state();
   }
 }
-      
-
-
