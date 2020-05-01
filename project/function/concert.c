@@ -1,3 +1,5 @@
+#include "libTimer.h"
+#include <msp430.h>
 #include "concert.h"
 #include "buzzer.h"
 #include "led.h"
@@ -30,11 +32,13 @@ void found_sound()
   static int n = 0;
  
   if (++n < 66){
-    red_toggle_on();
+    //red_toggle_on();
+    // do nothing
   }
   else {
     if (sound_notes[conductor] != 0){
-      green_toggle_on();
+      //green_toggle_on();
+      //do nothing
     }
     tone_player(sound_notes[conductor]);
   }
@@ -43,6 +47,38 @@ void found_sound()
     if (++conductor> 20){
       conductor = 0;
     }
-    n = 0;
+    n = 0; 
   }
-} 
+}
+
+void fun_sound()
+{
+  short sound_notes[] = {2,2,3,3,3,4,4,4,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  static char conductor = 0;
+  static int n = 0;
+ 
+  if (++n < 66){
+    //red_toggle_on();
+    // do nothing
+  }
+  else {
+    if (sound_notes[conductor] != 0){
+      //green_toggle_on();
+      //do nothing
+    }
+    tone_player(sound_notes[conductor]);
+  }
+ 
+  if (++n > 85){
+    if (++conductor> 20){
+      conductor = 0;
+    }
+    n = 0; 
+  }
+}
+
+
+void everything_off(){
+  //BLANK
+}
+

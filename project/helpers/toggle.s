@@ -19,39 +19,39 @@ toggle:
 	mov &state,r12
 	cmp #5, r12    		;State 5
 	jhs default
-	add r12, r12
-	mov jt (r12), r0
+	add r12,r12            
+	mov jt(r12),r0
 
 Case0:
 	mov.b #0, &red_on
-	mov.b #0, green_on
+	mov.b #0, &green_on
 	add #1, &state
 	jmp end
 
 
 Case1:
 	mov.b #1, &red_on
-	mov.b #0, green_on
+	mov.b #0, &green_on
 	add #1, &state
 	jmp end
 
 
 Case2:
 	mov.b #0, &red_on
-	mov.b #1, green_on
+	mov.b #1, &green_on
 	add #1, &state
 	jmp end
 
 
 Case3:
 	mov.b #1, &red_on
-	mov.b #1, green_on
+	mov.b #1, &green_on
 	mov.b #1, &state
 	jmp end
 
 default:	
 	mov.b #0, &red_on
-	mov.b #0, green_on
+	mov.b #0, &green_on
 	mov.b #1, &state
 	jmp end
 end:

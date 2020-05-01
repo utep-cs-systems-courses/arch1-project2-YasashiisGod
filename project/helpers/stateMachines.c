@@ -1,3 +1,4 @@
+#include "msp430.h"
 #include <msp430.h>
 #include "stateMachines.h"
 #include "led.h"
@@ -32,7 +33,7 @@ static char button_choice()
 {
   char p2val = button_update_interrupt_sense();
   char buttonState = 0;
-
+  
   if(p2val & BTN1 && p2val & BTN2 && p2val & BTN3 && p2val & BTN4)
   {
     buttonState = 0;
@@ -75,13 +76,15 @@ void next_state() {
     button_state = 1;
     break;
   case 2:
-    found_sound();
+    //found_sound();
     reset_state();
     button_state = 1;
     break;
   case 3:
-    found_sound();
-    reset_state();
+    //found_sound();
+    buzzer_set_period(200);
+    red_on = 1;
+    //reset_state();
     button_state = 1;
     break;
   case 4:
